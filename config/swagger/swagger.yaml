@@ -1,0 +1,94 @@
+swagger: "2.0"
+info:
+  version: "0.0.0"
+  title: "Marketplace"
+host: marketplaceapi.dev:80
+schemes:
+  - "http"
+paths:
+  /api/create_invoice:
+    post:
+      tags:
+        - "invoice"
+      summary: "Add a new invoice"
+      description: ""
+      operationId: "createInvoice"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/Invoice"
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: "object"
+            properties:
+              invoiceId:
+                type: "integer"
+        "405":
+          description: "Invalid input"
+  /api/pay_invoice:
+    post:
+      tags:
+        - "payment"
+      summary: "Payment process"
+      description: ""
+      operationId: "createPayment"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/Payment"
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: "object"
+            properties:
+              paid:
+                type: "boolean"
+        "405":
+          description: "Invalid input"
+definitions:
+  ArrayOfInt:
+    type: "array"
+    items:
+      type: "integer"
+  Invoice:
+    type: "object"
+    required:
+      - "productIds"
+    properties:
+      invoiceId:
+        type: "integer"
+      productIds:
+        type: "object"
+        $ref: "#/definitions/ArrayOfInt"
+  Payment:
+    type: "object"
+    required:
+      - "invoiceId"
+      - "paymentAmount"
+      - "paymentMethod"
+    properties:
+      invoiceId:
+        type: "integer"
+      paymentMethod:
+        type: "string"
+        default: "fake"
+      paymentAmount:
+        type: "number"
+        format: "float"

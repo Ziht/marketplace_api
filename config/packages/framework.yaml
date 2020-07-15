@@ -1,0 +1,39 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Core\:
+    resource: ../../src/Core/*
+    exclude: ../../src/Core/{}
+
+  Core\Factory\UrlMatcherFactory:
+    class: Core\Factory\UrlMatcherFactory
+  Symfony\Component\Routing\RequestContext:
+    class: Symfony\Component\Routing\RequestContext
+  Symfony\Component\Routing\Matcher\UrlMatcher:
+    class: Symfony\Component\Routing\Matcher\UrlMatcher
+    factory: ['@Core\Factory\UrlMatcherFactory', 'build']
+    arguments: ['@Symfony\Component\Routing\RequestContext']
+  Symfony\Component\HttpFoundation\RequestStack:
+    class: Symfony\Component\HttpFoundation\RequestStack
+  Symfony\Component\HttpKernel\Controller\ContainerControllerResolver:
+    class: Symfony\Component\HttpKernel\Controller\ContainerControllerResolver
+    arguments: ['@service_container']
+  Symfony\Component\HttpKernel\Controller\ArgumentResolver:
+    class: Symfony\Component\HttpKernel\Controller\ArgumentResolver
+  Symfony\Component\HttpKernel\EventListener\RouterListener:
+    class: Symfony\Component\HttpKernel\EventListener\RouterListener
+    arguments: ['@Symfony\Component\Routing\Matcher\UrlMatcher', '@Symfony\Component\HttpFoundation\RequestStack']
+  Symfony\Component\HttpKernel\EventListener\ResponseListener:
+    class: Symfony\Component\HttpKernel\EventListener\ResponseListener
+    arguments: ['UTF-8']
+  Symfony\Component\EventDispatcher\EventDispatcher:
+    class: Symfony\Component\EventDispatcher\EventDispatcher
+    calls:
+      - [addSubscriber, ['@Symfony\Component\HttpKernel\EventListener\RouterListener']]
+      - [addSubscriber, ['@Symfony\Component\HttpKernel\EventListener\ResponseListener']]
+  Core\Framework:
+    class: Core\Framework
+    arguments: ['@Symfony\Component\EventDispatcher\EventDispatcher', '@Symfony\Component\HttpKernel\Controller\ContainerControllerResolver', '@Symfony\Component\HttpFoundation\RequestStack', '@Symfony\Component\HttpKernel\Controller\ArgumentResolver']

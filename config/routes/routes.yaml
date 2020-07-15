@@ -1,0 +1,8 @@
+PayInvoiceController:
+  path: /api/pay_invoice
+  defaults: { _controller: Marketplace\Controller\PayInvoiceController:handle }
+  methods: POST
+CreateInvoiceController:
+  path: /api/create_invoice
+  defaults: { _controller: Marketplace\Controller\CreateInvoiceController:handle }
+  methods: POST

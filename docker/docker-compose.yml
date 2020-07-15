@@ -1,0 +1,72 @@
+version: '3.3'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./hosts:/etc/nginx/conf.d
+      - ../../:/var/www
+      - ./logs:/var/log/nginx
+    depends_on:
+      - php72-marketplace
+    networks:
+      - internal
+  php72-marketplace:
+    build: ./images/php
+    container_name: php
+    depends_on:
+      - mysql
+    volumes:
+      - ../../:/var/www
+      - ./images/php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      XDEBUG_CONFIG: 'remote_host=host.docker.internal remote_enable=1'
+      PHP_IDE_CONFIG: 'serverName=Docker'
+    networks:
+      - internal
+  mysql:
+    image: mysql:5.7.30
+    container_name: mysql
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./images/mysql/my.cnf:/etc/mysql/my.cnf
+    environment:
+      MYSQL_DATABASE: marketplace
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - internal
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui
+    ports:
+      - '8001:8080'
+    volumes:
+      - ../config/swagger:/usr/share/nginx/html/swagger
+    environment:
+      API_URL: swagger/swagger.yaml
+  rabbitmq:
+    image: rabbitmq:3.7.5-management
+    working_dir: /app
+    hostname: rabbit-mq
+    container_name: rabbit-mq
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: secret
+      RABBITMQ_DEFAULT_VHOST: my_vhost
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.220.0/28

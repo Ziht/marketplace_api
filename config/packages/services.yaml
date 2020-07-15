@@ -1,0 +1,46 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Marketplace\:
+    resource: ../../src/Marketplace/*
+    exclude: ../../src/Marketplace/{Entity,Repository,Dto}
+
+  Marketplace\Controller\:
+    resource: ../../src/Marketplace/Controller
+    public: true
+    tags: ['controller.service_arguments']
+
+  Core\Factory\EntityManagerFactory:
+    class: Core\Factory\EntityManagerFactory
+  Doctrine\ORM\EntityManager:
+    class: Doctrine\ORM\EntityManager
+    factory: ['@Core\Factory\EntityManagerFactory', 'build']
+
+  Core\HttpClient\GuzzleHttpClient:
+    class: Core\HttpClient\GuzzleHttpClient
+  Core\PaymentGateway\FakePaymentGateway:
+    class: Core\PaymentGateway\FakePaymentGateway
+    arguments: ['@Core\HttpClient\GuzzleHttpClient']
+
+  Marketplace\Repository\InvoiceRepository:
+    factory: ['@Doctrine\ORM\EntityManager', 'getRepository']
+    arguments:
+      - Marketplace\Entity\Invoice
+
+  Marketplace\Repository\InvoiceProductRepository:
+    factory: ['@Doctrine\ORM\EntityManager', 'getRepository']
+    arguments:
+      - Marketplace\Entity\InvoiceProduct
+
+  Marketplace\Repository\PaymentRepository:
+    factory: ['@Doctrine\ORM\EntityManager', 'getRepository']
+    arguments:
+      - Marketplace\Entity\Payment
+
+  Marketplace\Repository\ProductRepository:
+    factory: ['@Doctrine\ORM\EntityManager', 'getRepository']
+    arguments:
+      - Marketplace\Entity\Product

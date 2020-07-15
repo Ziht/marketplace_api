@@ -1,0 +1,36 @@
+{
+  "require": {
+    "symfony/http-kernel": "^5.1",
+    "symfony/routing": "^5.1",
+    "symfony/yaml": "^5.1",
+    "symfony/finder": "^5.1",
+    "symfony/http-foundation": "^5.1",
+    "symfony/dependency-injection": "^5.1",
+    "zircote/swagger-php": "^3.0",
+    "symfony/config": "^5.1",
+    "ext-json": "*",
+    "symfony/console": "^5.1",
+    "symfony/cache": "^5.1",
+    "symfony/orm-pack": "^1.0",
+    "doctrine/annotations": "^1.10",
+    "symfony/dotenv": "^5.1",
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "src/Core/",
+      "Tool\\": "src/Tool/",
+      "Marketplace\\": "src/Marketplace/",
+      "Command\\": "src/Command/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Src\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "symfony/maker-bundle": "^1.19",
+    "symfony/phpunit-bridge": "^5.1"
+  }
+}

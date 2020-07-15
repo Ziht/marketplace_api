@@ -1,0 +1,6 @@
+/cache/
+/docker/logs/
+/docker/mysql/*
+.env
+.phpunit.result.cache
+.phpunit.xml
