@@ -1,4 +1,5 @@
 <?php
+
 namespace Marketplace\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -37,73 +38,73 @@ class Product
     private $isSold;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
-    public function setName($name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getAmount()
+    public function getAmount(): float
     {
         return $this->amount;
     }
 
     /**
-     * @param mixed $amount
+     * @param float $amount
      */
-    public function setAmount($amount): void
+    public function setAmount(float $amount): void
     {
         $this->amount = $amount;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getIsEnable()
+    public function getIsEnable(): bool
     {
         return $this->isEnable;
     }
 
     /**
-     * @param mixed $isEnable
+     * @param bool $isEnable
      */
-    public function setIsEnable($isEnable): void
+    public function setIsEnable(bool $isEnable): void
     {
         $this->isEnable = $isEnable;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getIsSold()
+    public function getIsSold(): bool
     {
         return $this->isSold;
     }
 
     /**
-     * @param mixed $isSold
+     * @param bool $isSold
      */
-    public function setIsSold($isSold): void
+    public function setIsSold(bool $isSold): void
     {
         $this->isSold = $isSold;
     }

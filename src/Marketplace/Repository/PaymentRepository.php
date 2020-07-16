@@ -4,17 +4,12 @@ namespace Marketplace\Repository;
 use Doctrine\ORM\EntityRepository;
 use Marketplace\Entity\Payment;
 
+/**
+ * Class PaymentRepository
+ * @package Marketplace\Repository
+ */
 class PaymentRepository extends EntityRepository
 {
-    /**
-     * @param $ids
-     * @return Payment[]
-     */
-    public function findByIds($ids): array
-    {
-        return $this->findBy(['id' => $ids]);
-    }
-
     /**
      * @param int $invoiceId
      * @return Payment[]

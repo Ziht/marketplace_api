@@ -15,6 +15,9 @@ use PHPUnit\Framework\TestCase;
  */
 class EntityManagerFactoryTest extends TestCase
 {
+    /**
+     * @var EntityManagerFactory
+     */
     protected $entityManagerFactory;
 
     /**
@@ -28,6 +31,9 @@ class EntityManagerFactoryTest extends TestCase
         $this->assertInstanceOf(EntityManager::class, $entityManager);
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function setUp(): void
     {
         $this->entityManagerFactory = new EntityManagerFactory();
@@ -35,6 +41,9 @@ class EntityManagerFactoryTest extends TestCase
         parent::setUp();
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function tearDown(): void
     {
         unset($this->entityManagerFactory);

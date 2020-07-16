@@ -1,6 +1,8 @@
-/cache/
-/docker/logs/
+/cache/*
+/docker/logs/*
 /docker/mysql/*
+/.idea/
 .env
 .phpunit.result.cache
-.phpunit.xml
+phpunit.xml
+/vendor/*

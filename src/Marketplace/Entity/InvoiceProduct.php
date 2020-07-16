@@ -35,49 +35,49 @@ class InvoiceProduct
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getProductId()
+    public function getProductId(): int
     {
         return $this->productId;
     }
 
     /**
-     * @param mixed $productId
+     * @param int $productId
      */
-    public function setProductId($productId): void
+    public function setProductId(int $productId): void
     {
         $this->productId = $productId;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getInvoiceId()
+    public function getInvoiceId(): int
     {
         return $this->invoiceId;
     }
 
     /**
-     * @param mixed $invoiceId
+     * @param int $invoiceId
      */
-    public function setInvoiceId($invoiceId): void
+    public function setInvoiceId(int $invoiceId): void
     {
         $this->invoiceId = $invoiceId;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getAmount()
+    public function getAmount(): float
     {
         return $this->amount;
     }
 
     /**
-     * @param mixed $amount
+     * @param float $amount
      */
-    public function setAmount($amount): void
+    public function setAmount(float $amount): void
     {
         $this->amount = $amount;
     }

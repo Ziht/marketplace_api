@@ -1,6 +1,6 @@
 <?php
 
-namespace Command;
+namespace Marketplace\Command;
 
 use Core\Factory\EntityManagerFactory;
 use Exception;
@@ -9,15 +9,28 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class CreateProductsCommand
+ * @package Marketplace\Command
+ */
 class CreateProductsCommand extends Command
 {
+    /**
+     * @inheritDoc
+     */
     protected static $defaultName = 'app:create-products';
 
+    /**
+     * @inheritDoc
+     */
     protected function configure()
     {
 
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {

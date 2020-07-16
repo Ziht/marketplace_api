@@ -6,6 +6,8 @@ namespace Marketplace\Service;
 use Core\Exception\ValidationException;
 use Core\Result;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Exception;
 use Marketplace\Dto\Service\Product\ChangeProductStatusDto;
 use Marketplace\Dto\Service\Product\HoldProductsDto;
@@ -17,6 +19,10 @@ use Marketplace\Repository\InvoiceProductRepository;
 use Marketplace\Repository\InvoiceRepository;
 use Marketplace\Repository\ProductRepository;
 
+/**
+ * Class ProductService
+ * @package Marketplace\Service
+ */
 class ProductService
 {
     /**
@@ -39,6 +45,13 @@ class ProductService
      */
     protected $invoiceProductRepository;
 
+    /**
+     * ProductService constructor.
+     * @param EntityManager $entityManager
+     * @param ProductRepository $productRepository
+     * @param InvoiceRepository $invoiceRepository
+     * @param InvoiceProductRepository $invoiceProductRepository
+     */
     public function __construct(
         EntityManager $entityManager,
         ProductRepository $productRepository,
@@ -98,6 +111,12 @@ class ProductService
         }
     }
 
+    /**
+     * @param ChangeProductStatusDto $changeProductStatusDto
+     * @return Result
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     public function changeProductsStatus(ChangeProductStatusDto $changeProductStatusDto): Result
     {
         $result = new Result();
@@ -131,6 +150,10 @@ class ProductService
         return $result;
     }
 
+    /**
+     * @param ChangeProductStatusDto $changeProductStatusDto
+     * @throws ValidationException
+     */
     public function validateChangeProductsStatus(ChangeProductStatusDto $changeProductStatusDto): void
     {
         /** @var Invoice $invoice */

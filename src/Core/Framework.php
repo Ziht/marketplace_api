@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Core;
 
 use Core\Di\DiContainerInterface;
-use Doctrine\ORM\EntityManager;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -14,6 +13,10 @@ use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class Framework
+ * @package Core
+ */
 class Framework extends HttpKernel
 {
     public function __construct(
@@ -32,22 +35,16 @@ class Framework extends HttpKernel
      */
     public function run(DiContainerInterface $container): void
     {
-        /** @var EntityManager $entityManager */
-        $entityManager = $container->get('Doctrine\ORM\EntityManager');
         $container->compile();
         $request = $this->getRequest();
-//        $entityManager->beginTransaction();
         try {
             $response = $this->handle($request);
-//            $entityManager->commit();
-//            $entityManager->rollback();
         } catch (Exception $exception) {
             $response = new Response(json_encode([
                 'errorCode' => $exception->getCode(),
                 'errorMessage' => $exception->getMessage(),
                 'data' => '',
             ]));
-//            $entityManager->rollback();
         }
         $response->send();
         $this->terminate($request, $response);

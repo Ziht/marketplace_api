@@ -14,19 +14,24 @@
     "symfony/orm-pack": "^1.0",
     "doctrine/annotations": "^1.10",
     "symfony/dotenv": "^5.1",
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^7.0",
+    "ext-sockets": "*",
+    "ext-mbstring": "*",
+    "ext-pcntl": "*",
+    "ext-posix": "*",
+    "phpseclib/phpseclib": "^2.0.0",
+    "php-amqplib/php-amqplib": "^2.11",
+    "ext-amqp": "*"
   },
   "autoload": {
     "psr-4": {
       "Core\\": "src/Core/",
-      "Tool\\": "src/Tool/",
-      "Marketplace\\": "src/Marketplace/",
-      "Command\\": "src/Command/"
+      "Marketplace\\": "src/Marketplace/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Src\\Tests\\": "tests/"
+      "Test\\": "tests/"
     }
   },
   "require-dev": {

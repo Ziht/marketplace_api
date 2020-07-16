@@ -14,7 +14,10 @@ use Symfony\Component\Routing\RequestContext;
  */
 class UrlMatcherFactory
 {
-
+    /**
+     * @param RequestContext $context
+     * @return UrlMatcher
+     */
     public function build(RequestContext $context)
     {
         $fileLocator = new FileLocator(__DIR__ . '/../../../config/routes/');

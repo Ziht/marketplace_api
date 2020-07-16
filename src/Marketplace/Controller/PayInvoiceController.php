@@ -12,6 +12,10 @@ use ReflectionException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class PayInvoiceController
+ * @package Marketplace\Controller
+ */
 class PayInvoiceController
 {
     /**
@@ -39,7 +43,7 @@ class PayInvoiceController
     public function handle(Request $request): Response
     {
         $dto = new PayInvoiceDto($request->request->all());
-        $result = $this->paymentService->payInvoice($dto);
+        $result = $this->paymentService->startPayInvoice($dto);
         if ($result->getErrorCode()) {
             throw new Exception($result->getErrorMessage(), $result->getErrorCode());
         }

@@ -5,6 +5,10 @@ namespace Core\HttpClient;
 
 use GuzzleHttp\Client;
 
+/**
+ * Class GuzzleHttpClient
+ * @package Core\HttpClient
+ */
 class GuzzleHttpClient extends Client implements HttpClientInterface
 {
 

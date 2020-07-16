@@ -24,6 +24,10 @@ use Marketplace\Repository\PaymentRepository;
 use Marketplace\Repository\ProductRepository;
 use ReflectionException;
 
+/**
+ * Class InvoiceService
+ * @package Marketplace\Service
+ */
 class InvoiceService
 {
     /**
@@ -66,6 +70,17 @@ class InvoiceService
      */
     protected $invoiceProductRepository;
 
+    /**
+     * InvoiceService constructor.
+     * @param EntityManager $entityManager
+     * @param ProductRepository $productRepository
+     * @param InvoiceRepository $invoiceRepository
+     * @param PaymentRepository $paymentRepository
+     * @param InvoiceProductRepository $invoiceProductRepository
+     * @param UserService $userService
+     * @param ProductService $productService
+     * @param PaymentBll $paymentBll
+     */
     public function __construct(
         EntityManager $entityManager,
         ProductRepository $productRepository,
@@ -218,7 +233,7 @@ class InvoiceService
             /** @var Invoice $invoice */
             $invoice = $this->invoiceRepository->find($changeInvoiceDto->getInvoiceId());
             $payments = $this->paymentRepository->findByInvoiceId($changeInvoiceDto->getInvoiceId());
-            $remainingAmount = $this->paymentBll->calcRemainingAmount($invoice, $payments);
+            $remainingAmount = $this->paymentBll->calcRealRemainingAmount($invoice, $payments);
             if ($remainingAmount === 0.0) {
                 $invoice->setStatus(InvoiceStatus::INVOICE_STATUS_PAID);
             } elseif ($remainingAmount === $invoice->getTotalAmount()) {

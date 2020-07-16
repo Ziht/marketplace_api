@@ -8,6 +8,7 @@ use Core\Di\DiContainer;
 use Core\Di\DiContainerInterface;
 use Core\Framework;
 use Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -39,7 +40,7 @@ class ApiBootstrapTest extends TestCase
      */
     public function testGetFramework(): void
     {
-        /** @var DiContainerInterface $di */
+        /** @var DiContainerInterface|MockObject $di */
         $di = $this->createMock(DiContainer::class);
         $di->expects($this->any())
             ->method('get')
@@ -70,6 +71,9 @@ class ApiBootstrapTest extends TestCase
         $this->assertTrue(TRUE);
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function setUp(): void
     {
         $this->apiBootstrap = new ApiBootstrap();
@@ -77,6 +81,9 @@ class ApiBootstrapTest extends TestCase
         parent::setUp();
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function tearDown(): void
     {
         unset($this->apiBootstrap);

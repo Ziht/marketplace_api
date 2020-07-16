@@ -53,6 +53,9 @@ class ApiBootstrap implements BootstrapInterface
         return $container;
     }
 
+    /**
+     * Init ENV
+     */
     public function initEnv(): void
     {
         $dotenv = new Dotenv();
@@ -60,6 +63,9 @@ class ApiBootstrap implements BootstrapInterface
         $dotenv->bootEnv(__DIR__ . '/../../../.env');
     }
 
+    /**
+     * @return string
+     */
     protected function getEnvironment()
     {
         return getenv('APP_ENV');

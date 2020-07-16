@@ -7,6 +7,10 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
 
+/**
+ * Class Dto
+ * @package Core\Dto
+ */
 class Dto
 {
     /**

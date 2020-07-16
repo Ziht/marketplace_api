@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace Core;
 
+/**
+ * Class Result
+ * @package Core
+ */
 class Result
 {
     /**

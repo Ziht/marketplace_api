@@ -34,41 +34,41 @@ class Invoice
     private $totalAmount;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getUserId()
+    public function getUserId(): int
     {
         return $this->userId;
     }
 
     /**
-     * @param mixed $userId
+     * @param int $userId
      */
-    public function setUserId($userId): void
+    public function setUserId(int $userId): void
     {
         $this->userId = $userId;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @param mixed $status
+     * @param string $status
      */
-    public function setStatus($status): void
+    public function setStatus(string $status): void
     {
         if (!in_array($status, InvoiceStatus::$values)) {
             throw new \InvalidArgumentException("Invalid status");
@@ -77,17 +77,17 @@ class Invoice
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getTotalAmount()
+    public function getTotalAmount(): float
     {
         return $this->totalAmount;
     }
 
     /**
-     * @param mixed $totalAmount
+     * @param float $totalAmount
      */
-    public function setTotalAmount($totalAmount): void
+    public function setTotalAmount(float $totalAmount): void
     {
         $this->totalAmount = $totalAmount;
     }

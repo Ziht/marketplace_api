@@ -23,7 +23,7 @@ paths:
           description: ""
           required: true
           schema:
-            $ref: "#/definitions/Invoice"
+            $ref: "#/definitions/CreateInvoice"
       responses:
         "200":
           description: OK
@@ -51,7 +51,7 @@ paths:
           description: ""
           required: true
           schema:
-            $ref: "#/definitions/Payment"
+            $ref: "#/definitions/PayPayment"
       responses:
         "200":
           description: OK
@@ -67,17 +67,15 @@ definitions:
     type: "array"
     items:
       type: "integer"
-  Invoice:
+  CreateInvoice:
     type: "object"
     required:
       - "productIds"
     properties:
-      invoiceId:
-        type: "integer"
       productIds:
         type: "object"
         $ref: "#/definitions/ArrayOfInt"
-  Payment:
+  PayPayment:
     type: "object"
     required:
       - "invoiceId"

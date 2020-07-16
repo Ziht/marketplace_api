@@ -40,11 +40,11 @@ class Payment
     private $status;
 
     /**
-     * @param int $id
+     * @return int
      */
-    public function setId($id): void
+    public function getId(): int
     {
-        $this->id = $id;
+        return $this->id;
     }
 
     /**

@@ -6,6 +6,10 @@ namespace Core\Bootstrap;
 use Core\Di\DiContainerInterface;
 use Core\Framework;
 
+/**
+ * Interface BootstrapInterface
+ * @package Core\Bootstrap
+ */
 interface BootstrapInterface
 {
     /**

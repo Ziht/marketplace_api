@@ -63,6 +63,8 @@ services:
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: secret
       RABBITMQ_DEFAULT_VHOST: my_vhost
+    networks:
+      - internal
 networks:
   internal:
     driver: bridge

@@ -5,6 +5,10 @@ namespace Core\PaymentGateway;
 
 use Core\HttpClient\ResponseInterface;
 
+/**
+ * Interface PaymentGatewayInterface
+ * @package Core\PaymentGateway
+ */
 interface PaymentGatewayInterface
 {
     /**

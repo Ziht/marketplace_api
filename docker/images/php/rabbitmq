@@ -1,0 +1,15 @@
+[Unit]
+Description="RabbitMQ daemon"
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStopSec=30m
+KillMode=mixed
+User=root
+Group=root
+
+Environment="APP_ENV=dev"
+
+ExecStart=/usr/local/bin/php /var/www/marketplaceapi.dev/bin/rabbitmq.php
