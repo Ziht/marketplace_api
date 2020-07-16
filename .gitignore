@@ -1,8 +1,9 @@
 /cache/*
 /docker/logs/*
 /docker/mysql/*
-/.idea/
+.idea/
 .env
 .phpunit.result.cache
 phpunit.xml
-/vendor/*
+vendor/
+docker/images/mysql/mysql_sock/
